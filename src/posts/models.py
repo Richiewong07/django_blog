@@ -9,7 +9,8 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now = True, auto_now_add = False)        # auto_now EVERYTIME IT'S SAVED INTO THE DATABASE -> updated will be set
     timestamp = models.DateTimeField(auto_now = False, auto_now_add = True)      # auto_now_add IS WHEN IT'S ADDED INTO DATABASE INITIALLY, ONLY SET 1 TIME (SAVE AND SET)
 
-    def __str__(self):              # UNICODE TO RETURN
+    def __str__(self):              # UNICODE TO RETURN TITLE IN ADMIN PAGE
         return self.title
+
 
 
