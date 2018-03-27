@@ -20,6 +20,7 @@ from django.conf.urls import include, url
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^posts/', include("posts.urls")),  # include ALLOWS US TO IMPORT URL
+
     # url(r'^post/$', include(post_views.post_home, name = 'post')),  # post/$ ANYTHING BEYOND IT DOES NOT DEAL WITH THIS PATTERN
-    url(r'^post/', include("posts.urls")),
 ]
