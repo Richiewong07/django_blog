@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 # USING SOMETHING CALLED MVC FRAMEWORK (MODEL VIEW CONTROLLER) LOOK IT UP
@@ -11,6 +12,11 @@ class Post(models.Model):
 
     def __str__(self):              # UNICODE TO RETURN TITLE IN ADMIN PAGE
         return self.title
+
+
+    def get_absolute_url(self):
+        return reverse("posts:detail", kwargs={"id": self.id})    # "details" IS "name" PARAMETER in URL
+        # return "/posts/%s" %(self.id)
 
 
 
