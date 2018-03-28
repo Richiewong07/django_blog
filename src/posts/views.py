@@ -10,14 +10,14 @@ def post_create(request):
 
 
 
-def post_detail(request):
+def post_detail(request, id):   # id PASSED FROM REG EXPRESSION IN post/urls.py
 
     # WILL GIVE ERRORS --> NOT RECOMMENDED TO USE
     # instance = Post.objects.get(id=1)
 
     # USE THIS METHOD PROVIDED BY DJANGO --> GET CERTAIN ITEMS BASED ON QUERY FIELD
     # instance WILL HAVE THE CONTENT FROM THE POST CLASS FOR SPECIFIC QUERY
-    instance = get_object_or_404(Post, id="3")
+    instance = get_object_or_404(Post, id = id)
 
     # PASSED TO post_detail.html
     context = {

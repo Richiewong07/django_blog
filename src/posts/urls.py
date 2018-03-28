@@ -22,9 +22,9 @@ from .views import (
 )
 
 urlpatterns = [
-    url(r'^$', post_list),            # http://127.0.0.1:8000/posts/
-    url(r'^create/$', post_create),   # http://127.0.0.1:8000/posts/create/
-    url(r'^detail/$', post_detail),
+    url(r'^$', post_list),                      # http://127.0.0.1:8000/posts/
+    url(r'^create/$', post_create),             # http://127.0.0.1:8000/posts/create/
+    url(r'^(?P<id>\d+)$', post_detail),         # (?P<id>\d+)$ REG EXORESSION W/ NEW PARAMETER CALLED id --> ONLY ACCEPTS DIGITS
     url(r'^update/$', post_update),
     url(r'^delete/$', post_delete),
 ]
