@@ -4,6 +4,11 @@ from django.contrib import admin
 # Register your models here.
 from .models import Post    # .models INSTEAD OF post.models B/C ADMIN IS IN THE SAME FILE (RELATIVE IMPORT)
 
+from django.contrib import admin
+
+# Register your models here.
+from .models import Post
+
 
 # ALLOWS CUSTOMIZATION TO ADMIN PAGE
 class PostModelAdmin(admin.ModelAdmin):
