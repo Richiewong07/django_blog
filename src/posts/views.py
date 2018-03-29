@@ -1,5 +1,6 @@
+from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 
 
@@ -10,14 +11,18 @@ from .models import Post
 
 def post_create(request):
 
-    # CREATES FORM, DJANGO FORM METHOD --> request.POST or None FOR VALIDATION ERRORS
+    # CREATES FORM (DJANGO FORM METHOD) --> request.POST or None FOR VALIDATION ERRORS
     form = PostForm(request.POST or None)
     if form.is_valid():
         # SAVES FORM CONTENT TO DATABASE
         instance = form.save(commit = False)
         # print(form.cleaned_data.get("title"))
         instance.save()
-        # MESSAGE SUCCESS 
+        # MESSAGE SUCCESS
+        messages.success(request, "Successful Created")
+    else:
+        messages.error(request, "Not Successful Created")
+
         return HttpResponseRedirect(instance.get_absolute_url())
 
     # TO CAPTURE THE DATA GETTING POSTED --> NOT RECOMMENDED B/C NO FIELD IS REQUIRED
@@ -86,6 +91,7 @@ def post_list(request):
 
 
 def post_update(request, id = None):
+    # NEED INSTANCE
     instance = get_object_or_404(Post, id=id)
 
     # ADD instance = instance to show content
@@ -93,6 +99,8 @@ def post_update(request, id = None):
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
+        # ADDED POPUP MESSAGE
+        messages.success(request, "Items Saved")
         # instance.get_absolute_url() METHOD FROM Post Model Instance IN models.py
         return HttpResponseRedirect(instance.get_absolute_url())
 
@@ -107,5 +115,9 @@ def post_update(request, id = None):
 
 
 
-def post_delete(request):
-    return HttpResponse("<h1>Delete</h1>")
+def post_delete(request, id=None):
+    instance = get_object_or_404(Post, id=id)
+    instance.delete()
+    messages.success(request, "Successfully Deleted")
+    return redirect("posts:list")
+
