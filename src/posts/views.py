@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
 
@@ -10,13 +10,15 @@ from .models import Post
 
 def post_create(request):
 
-    # DJANGO FORM METHOD --> request.POST or None FOR VALIDATION ERRORS
+    # CREATES FORM, DJANGO FORM METHOD --> request.POST or None FOR VALIDATION ERRORS
     form = PostForm(request.POST or None)
     if form.is_valid():
         # SAVES FORM CONTENT TO DATABASE
         instance = form.save(commit = False)
         # print(form.cleaned_data.get("title"))
         instance.save()
+        # MESSAGE SUCCESS 
+        return HttpResponseRedirect(instance.get_absolute_url())
 
     # TO CAPTURE THE DATA GETTING POSTED --> NOT RECOMMENDED B/C NO FIELD IS REQUIRED
     # if request.method == "POST":
@@ -83,8 +85,24 @@ def post_list(request):
 
 
 
-def post_update(request):
-    return HttpResponse("<h1>Update</h1>")
+def post_update(request, id = None):
+    instance = get_object_or_404(Post, id=id)
+
+    # ADD instance = instance to show content
+    form = PostForm(request.POST or None, instance=instance)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        # instance.get_absolute_url() METHOD FROM Post Model Instance IN models.py
+        return HttpResponseRedirect(instance.get_absolute_url())
+
+    context = {
+        "title": instance.title,
+        "instance": instance,
+        "form": form,
+    }
+
+    return render(request, 'post_form.html', context)
 
 
 
