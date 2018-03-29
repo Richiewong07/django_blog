@@ -9,12 +9,16 @@ from .forms import PostForm
 from .models import Post
 
 def post_create(request):
+
+    # DJANGO FORM METHOD --> request.POST or None FOR VALIDATION ERRORS
     form = PostForm(request.POST or None)
     if form.is_valid():
+        # SAVES FORM CONTENT TO DATABASE
         instance = form.save(commit = False)
+        # print(form.cleaned_data.get("title"))
         instance.save()
 
-
+    # TO CAPTURE THE DATA GETTING POSTED --> NOT RECOMMENDED B/C NO FIELD IS REQUIRED
     # if request.method == "POST":
     #     print(request.POST.get("content"))
     #     print(request.POST.get("title"))

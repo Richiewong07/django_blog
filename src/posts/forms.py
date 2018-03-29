@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from .models import Post
 
 class PostForm(ModelForm):
-    class Meta:
+    class Meta:             # INNER CLASS
         model = Post
         fields = [
             "title",

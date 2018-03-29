@@ -7,9 +7,19 @@
 <body>
 <h1>Form</h1>
 
+
+<!--NEED TO WRAP EVERYTHING IN form-->
+<!--DEFAULT METHOD IS GET (WILL PUT CONTENT IN URL BAR), WANT TO CHANGE TO method='POST'-->
+<!--action TELLS WHAT URL YOU WANT TO SEND TO '/post/create/'-->
 <form method='POST' action=''>
+
+    <!--csrf REQUIRED. GIVES SECURITY/ VALIDATION -->
     {% csrf_token %}
+
+    <!--ADDS FORM TO HTML PAGE AS PARAGRAPH-->
     {{ form.as_p }}
+
+    <!--SUBMIT BUTTON-->
     <input type='submit' value='Create Post' />
 </form>
 
