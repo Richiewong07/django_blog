@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+        <h1> {{ title }} is working </h1>
+
+        <!--LOOPS THROUGH OBJECT LIST-->
+        {% for obj in object_list %}
+
+        <!--TAKES YOU TO post/id AKA POST DETAILS PAGE-->
+        <!--HARD CODED VERSION, NOT RECOMMENDED-->
+        <!--<a href='/posts/{{ obj.id }}/'>{{ obj.title }}</a> <br>-->
+
+        <!--NAMED URLS VERSION-->
+        <!--'detail' FROM name in post.urls.py-->
+        <!--<a href = '{% url "posts:detail" id=obj.id %}'>{{ obj.title }}</a><br>-->
+
+        <!--GET ABSOLUTE URL METHOD-->
+        <!--obj.get_absolute_url FROM models.py, USE reverse method, namespace added "namespace" : "name"-->
+        {% url "posts:detail" id=obj.id %} <br>
+        <a href = '{{ obj.get_absolute_url }}'>{{ obj.title }}</a><br>
+            {{ obj.content }} <br>
+            {{ obj.timestamp }} <br>
+            {{ obj.updated }} <br>
+            {{ obj.id }} <br>
+            <hr>
+        {% endfor %}
+    {% endblock content %}

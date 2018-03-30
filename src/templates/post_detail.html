@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-<!--ADDS 'message' TO BODY-->
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+{% extends "base.html" %}
+
+{% block content %}
+
+{% block head_title %}
+{{ instance.title }} | {{ block.super }}
+{% endblock head_title %}
 
 <h1>{{ title }}</h1>
 
@@ -23,5 +15,4 @@
 {{ instance.updated }}<br>
 {{ instance.id }}<br>
 
-</body>
-</html>
+{% endblock content %}

@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Form</h1>
+{% extends "base.html" %}
 
+{% block content %}
+
+
+
+<h1>Form</h1>
 
 <!--NEED TO WRAP EVERYTHING IN form-->
 <!--DEFAULT METHOD IS GET (WILL PUT CONTENT IN URL BAR), WANT TO CHANGE TO method='POST'-->
@@ -23,6 +21,4 @@
     <input type='submit' value='Create Post' />
 </form>
 
-
-</body>
-</html>
+{% endblock content %}

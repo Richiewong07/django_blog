@@ -20,10 +20,11 @@ def post_create(request):
         instance.save()
         # MESSAGE SUCCESS
         messages.success(request, "Successful Created")
-    else:
-        messages.error(request, "Not Successful Created")
-
         return HttpResponseRedirect(instance.get_absolute_url())
+    # else:
+    #     messages.error(request, "Not Successful Created")
+
+
 
     # TO CAPTURE THE DATA GETTING POSTED --> NOT RECOMMENDED B/C NO FIELD IS REQUIRED
     # if request.method == "POST":
@@ -81,7 +82,7 @@ def post_list(request):
     #         "title": "List"
     #     }
 
-    return render(request, 'index.html', context)
+    return render(request, 'post_list.html', context)
 
 
     # return HttpResponse("<h1>List</h1>")
