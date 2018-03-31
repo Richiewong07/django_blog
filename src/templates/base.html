@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block head_title %}Django Blog{% endblock head_title %}</title>
+    <link rel="stylesheet" href="/static/css/base.css" />
+<style>
+    {% block style %}{% endblock style %}
+</style>
 </head>
 <body>
 
+<!--SHOW SUCCESS MESSAGE-->
 {% include "messages_display.html" %}
 
 <div class="container">
