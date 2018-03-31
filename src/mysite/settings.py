@@ -120,11 +120,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
+# HOW TO SET UP STATIC FILE
+# FROM DOCS --> "CONFIGURING STATIC FILES" --> TAKE OS PATH TO STATIC FOLDER
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     # '/var/www/static/',
 ]
 
+
+# STATIC ROOT LOCATION
+# static_cdn --> static content delivery network to emulate if static files is on a different server
+# BASE_DIR --> SERVER WHERE DJANGO PROJECT IS
+# os.path.dirname(BASE_DIR) --> MOVE UP ONE LEVEL FROM "BASE_DIR" WHERE IT LOOKS FOR "static_cdn" --> IN VIRTUAL ENV
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
+
+# ALLOWS USER TO UPLOAD A FILE
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")

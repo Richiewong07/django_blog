@@ -30,5 +30,7 @@ urlpatterns = [
     # url(r'^post/$', include(post_views.post_home, name = 'post')),  # post/$ ANYTHING BEYOND IT DOES NOT DEAL WITH THIS PATTERN
 ]
 
+# FROM DOCS --> "SERVING STATIC FILES DURING DEVELOPMENT"
+# SET UP STATIC_ROOT AFTERWARDS IN settings.py
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
