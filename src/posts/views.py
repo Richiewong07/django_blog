@@ -21,8 +21,8 @@ def post_create(request):
         # MESSAGE SUCCESS
         messages.success(request, "Successful Created")
         return HttpResponseRedirect(instance.get_absolute_url())
-    # else:
-    #     messages.error(request, "Not Successful Created")
+    else:
+        messages.error(request, "Not Successful Created")
 
 
 
