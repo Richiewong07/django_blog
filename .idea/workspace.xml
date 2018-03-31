@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a0f24057-50c8-49e7-988c-656747a29191" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/templates/post_list.html" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/db.sqlite3" afterPath="$PROJECT_DIR$/src/db.sqlite3" />
-      <change beforePath="$PROJECT_DIR$/src/posts/views.py" afterPath="$PROJECT_DIR$/src/posts/views.py" />
-      <change beforePath="$PROJECT_DIR$/src/templates/post_detail.html" afterPath="$PROJECT_DIR$/src/templates/post_detail.html" />
-      <change beforePath="$PROJECT_DIR$/src/templates/post_form.html" afterPath="$PROJECT_DIR$/src/templates/post_form.html" />
-    </list>
+    <list default="true" id="a0f24057-50c8-49e7-988c-656747a29191" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,8 +38,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/posts/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="24" selection-end-column="59" />
+            <state relative-caret-position="407">
+              <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -521,8 +514,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/posts/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="6" selection-end-line="24" selection-end-column="59" />
+        <state relative-caret-position="407">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
