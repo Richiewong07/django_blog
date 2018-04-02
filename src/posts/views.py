@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -65,11 +66,24 @@ def post_detail(request, id):   # id PASSED FROM REG EXPRESSION IN post/urls.py
 def post_list(request):
 
     # GIVES YOU OBJECTS IN DB FROM POST MODEL
-    queryset = Post.objects.all()
+    queryset_list = Post.objects.all() #.order_by("-timestamp")
+
+    # ADDED PAGINATION
+    paginator = Paginator(queryset_list, 10)  # Show 25 contacts per page
+    page_req_var = "page"
+    page = request.GET.get(page_req_var)
+    try:
+        queryset = paginator.page(page)
+    except PageNotAnInteger:
+        queryset = paginator.page(1)
+    except EmptyPage:
+        queryset = paginator.page(paginator.num_pages)
+
 
     context = {
         "object_list" : queryset,
-        "title" : "List"
+        "title" : "List",
+        "page_req_var" : page_req_var,
     }
 
     # # TWO DIFFERENT CONTEXT DEPENDING ON IF USER IS LOGIN
@@ -86,6 +100,9 @@ def post_list(request):
 
 
     # return HttpResponse("<h1>List</h1>")
+
+
+
 
 
 
