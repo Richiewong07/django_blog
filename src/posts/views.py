@@ -69,7 +69,7 @@ def post_list(request):
     queryset_list = Post.objects.all() #.order_by("-timestamp")
 
     # ADDED PAGINATION
-    paginator = Paginator(queryset_list, 10)  # Show 25 contacts per page
+    paginator = Paginator(queryset_list, 5)  # Show 5 contacts per page
     page_req_var = "page"
     page = request.GET.get(page_req_var)
     try:
