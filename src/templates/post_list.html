@@ -2,7 +2,7 @@
 {% block content %}
 
 
-<div class="col-sm-8 offset-sm-2">
+<div class="col-sm-6 offset-sm-3">
     <h1> {{ title }}</h1>
     <!--LOOPS THROUGH OBJECT LIST-->
     {% for obj in object_list %}
@@ -10,7 +10,7 @@
             <div class="col-sm-12">
                 <div class="img-thumbnail">
                   <div class="caption">
-                    <h3><a href = '{{ obj.get_absolute_url }}'>{{ obj.title }}</a> <small>{{ obj.timestamp|timesince }}</small></h3>
+                    <h3><a href = '{{ obj.get_absolute_url }}'>{{ obj.title }}</a> <small>{{ obj.timestamp|timesince }} ago</small></h3>
                     <p>{{ obj.content|linebreaks|truncatechars:120 }}</p>
                     <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
                   </div>
