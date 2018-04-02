@@ -1,13 +1,46 @@
 {% extends "base.html" %}
-
-
 {% block content %}
-        <h1> {{ title }} is working </h1>
 
-        <!--LOOPS THROUGH OBJECT LIST-->
-        {% for obj in object_list %}
 
-        <!--TAKES YOU TO post/id AKA POST DETAILS PAGE-->
+<div class="col-sm-8 offset-sm-2">
+    <h1> {{ title }}</h1>
+    <!--LOOPS THROUGH OBJECT LIST-->
+    {% for obj in object_list %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="img-thumbnail">
+                  <div class="caption">
+                    <h3><a href = '{{ obj.get_absolute_url }}'>{{ obj.title }}</a> <small>{{ obj.timestamp|timesince }}</small></h3>
+                    <p>{{ obj.content|linebreaks|truncatechars:120 }}</p>
+                    <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
+                  </div>
+                </div>
+            </div>
+        </div>
+    <hr>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}
+
+
+
+
+<!--<div class='col-sm-6'>-->
+    <!--{% url "posts:detail" id=obj.id %} <br>-->
+    <!--<a href = '{{ obj.get_absolute_url }}'>{{ obj.title }}</a><br>-->
+    <!--{{ obj.content|linebreaks|truncatechars:120 }} <br>-->
+    <!--{{ obj.timestamp }} <br>-->
+    <!--{{ obj.updated }} <br>-->
+    <!--{{ obj.id }} <br>-->
+    <!--<hr>-->
+<!--</div>-->
+
+
+
+
+<!--TAKES YOU TO post/id AKA POST DETAILS PAGE-->
         <!--HARD CODED VERSION, NOT RECOMMENDED-->
         <!--<a href='/posts/{{ obj.id }}/'>{{ obj.title }}</a> <br>-->
 
@@ -17,12 +50,3 @@
 
         <!--GET ABSOLUTE URL METHOD-->
         <!--obj.get_absolute_url FROM models.py, USE reverse method, namespace added "namespace" : "name"-->
-        {% url "posts:detail" id=obj.id %} <br>
-        <a href = '{{ obj.get_absolute_url }}'>{{ obj.title }}</a><br>
-            {{ obj.content }} <br>
-            {{ obj.timestamp }} <br>
-            {{ obj.updated }} <br>
-            {{ obj.id }} <br>
-            <hr>
-        {% endfor %}
-{% endblock content %}
