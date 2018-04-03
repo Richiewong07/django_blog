@@ -9,7 +9,7 @@
     <!--NEED TO WRAP EVERYTHING IN form-->
     <!--DEFAULT METHOD IS GET (WILL PUT CONTENT IN URL BAR), WANT TO CHANGE TO method='POST'-->
     <!--action TELLS WHAT URL YOU WANT TO SEND TO '/post/create/'-->
-    <form method='POST' action=''>
+    <form method='POST' action='' enctype='multipart/form-data'>
 
         <!--csrf REQUIRED. GIVES SECURITY/ VALIDATION -->
         {% csrf_token %}

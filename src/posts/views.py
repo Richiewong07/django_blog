@@ -13,7 +13,7 @@ from .models import Post
 def post_create(request):
 
     # CREATES FORM (DJANGO FORM METHOD) --> request.POST or None FOR VALIDATION ERRORS
-    form = PostForm(request.POST or None)
+    form = PostForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         # SAVES FORM CONTENT TO DATABASE
         instance = form.save(commit = False)
@@ -113,7 +113,7 @@ def post_update(request, id = None):
     instance = get_object_or_404(Post, id=id)
 
     # ADD instance = instance to show content
-    form = PostForm(request.POST or None, instance=instance)
+    form = PostForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()

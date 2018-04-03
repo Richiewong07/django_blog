@@ -134,5 +134,8 @@ STATICFILES_DIRS = [
 # os.path.dirname(BASE_DIR) --> MOVE UP ONE LEVEL FROM "BASE_DIR" WHERE IT LOOKS FOR "static_cdn" --> IN VIRTUAL ENV
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
 
+
+MEDIA_URL = '/media/'
+
 # ALLOWS USER TO UPLOAD A FILE
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")

@@ -7,6 +7,9 @@
 
 {% block content %}
 <div class ='col-sm-6 offset-sm-3'>
+    {% if instance.image %}
+    <img src = '{{ instance.image.url }}' class='img-fluid' />
+    {% endif %}
     <h1>{{ title }}</h1>
     <h3>{{ instance.timestamp }}</h3>
 

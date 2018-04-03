@@ -9,6 +9,10 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="img-thumbnail">
+                    {% if obj.image %}
+                    <img src = '{{ obj.image.url }}' class='img-fluid' />
+                    {% endif %}
+
                   <div class="caption">
                     <h3><a href = '{{ obj.get_absolute_url }}'>{{ obj.title }}</a> <h6>{{ obj.timestamp|timesince }} ago</h6></h3>
                     <p>{{ obj.content|linebreaks|truncatechars:120 }}</p>
