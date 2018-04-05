@@ -1,3 +1,6 @@
+
+from urllib.parse import quote_plus
+
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
@@ -50,10 +53,13 @@ def post_detail(request, id):   # id PASSED FROM REG EXPRESSION IN post/urls.py
     # instance WILL HAVE THE CONTENT FROM THE POST CLASS FOR SPECIFIC QUERY
     instance = get_object_or_404(Post, id = id)
 
+    share_string = quote_plus(instance.content)
+
     # PASSED TO post_detail.html
     context = {
         "title": instance.title,
         "instance": instance,
+        "share_string": share_string,
     }
 
     return render(request, 'post_detail.html', context)
