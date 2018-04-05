@@ -1,6 +1,10 @@
 from django.db import models
 from django.urls import reverse
 
+from django.db.models.signals import pre_save
+
+from django.utils.text import slugify
+
 # Create your models here.
 # USING SOMETHING CALLED MVC FRAMEWORK (MODEL VIEW CONTROLLER) LOOK IT UP
 
@@ -11,6 +15,7 @@ def upload_location(instance, filename):
 
 class Post(models.Model):
     title = models.CharField(max_length = 120)
+    slug = models.SlugField(unique=True, null=True)
     image = models.ImageField(upload_to = upload_location,
                               null = True,
                               blank = True,
@@ -35,4 +40,43 @@ class Post(models.Model):
         ordering = ["-timestamp", "-updated"]
 
 
+
+
+def create_slug(instance, new_slug = None):
+    # SLUGIFY TITLE
+    slug = slugify(instance.title)
+    if new_slug is not None:
+        slug = new_slug
+
+    # CHECK IS SLUG EXISTS
+    qs = Post.objects.filter(slug = slug).order_by("-id")
+    exists = qs.exists()
+    if exists:
+        new_slug = "%s-%s" %(slug, qs.first().id)
+        return create_slug(instance, new_slug = new_slug)
+    return slug
+
+
+
+
+# # SIGNAL RECEIVER --> ALLOWS YOU TO DO SOMETHING BEFORE MODEL IS SAVED --> EVERYTIME METHOD SAVED IS CALLED IT GOES RECEIVER FUNCTION
+# # *args and **kwargs --> IF FUNCTION RECIEVED OTHER THINGS IT IS ADDED TO IT
+#
+def pre_save_post_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = create_slug(instance)
+
+    # # slugify TURNS TITLE INTO A SLUG --> "TESTLA ITEM 1" TO "TESLA-ITEM-1"
+    # slug = slugify(instance.title)
+    # # CHECK TO SEE IF SLUG EXISTS
+    # exists = Post.objects.filter(slug = slug).exists()
+    # if exists:
+    #     slug = "%s-%s" %(slugify(instance.title), instance.id)
+    #
+    # instance.slug = slug
+#
+#
+# # (receiver, sender)
+# send = model class
+pre_save.connect(pre_save_post_receiver, sender=Post)
 
