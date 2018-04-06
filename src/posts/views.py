@@ -53,6 +53,7 @@ def post_detail(request, id):   # id PASSED FROM REG EXPRESSION IN post/urls.py
     # instance WILL HAVE THE CONTENT FROM THE POST CLASS FOR SPECIFIC QUERY
     instance = get_object_or_404(Post, id = id)
 
+    # ADDS SOCIAL SHARE LINKS IN post_detail.html
     share_string = quote_plus(instance.content)
 
     # PASSED TO post_detail.html
