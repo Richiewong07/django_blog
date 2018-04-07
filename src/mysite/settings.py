@@ -139,3 +139,6 @@ MEDIA_URL = '/media/'
 
 # ALLOWS USER TO UPLOAD A FILE
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media_cdn")
+
+
+
