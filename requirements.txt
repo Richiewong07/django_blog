@@ -1,10 +1,12 @@
 click==6.7
+dj-database-url==0.5.0
 Django==1.11.7
 django-dotenv==1.4.1
 django-uwsgi==0.2.1
 djzen==17.7.1
 Pillow==5.1.0
 pip-save==0.2.0
+python-decouple==3.1
 pytz==2017.3
 six==1.9.0
 uWSGI==2.0.15
