@@ -4,6 +4,7 @@ from urllib.parse import quote_plus
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import Http404
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -15,14 +16,22 @@ from .models import Post
 
 def post_create(request):
     if not request.user.is_staff or not request.user.is_superuser:
-        raise HTTP404
+        raise Http404("YOU ARE NOT LOGIN. ONLY USERS MAY CREATE/EDIT/DELETE A POST")
+
+    # if not request.user.is_authenticated():
+    #     raise Http404
 
     # CREATES FORM (DJANGO FORM METHOD) --> request.POST or None FOR VALIDATION ERRORS
     form = PostForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         # SAVES FORM CONTENT TO DATABASE
         instance = form.save(commit = False)
+
         # print(form.cleaned_data.get("title"))
+
+        # REQUIRES USER
+        instance.user = request.user
+
         instance.save()
         # MESSAGE SUCCESS
         messages.success(request, "Successful Created")
@@ -120,7 +129,7 @@ def post_list(request):
 
 def post_update(request, id = None):
     if not request.user.is_staff or not request.user.is_superuser:
-        raise HTTP404
+        raise Http404("YOU ARE NOT LOGIN. ONLY USERS MAY CREATE/EDIT/DELETE A POST")
 
     # NEED INSTANCE
     instance = get_object_or_404(Post, id=id)
@@ -148,7 +157,8 @@ def post_update(request, id = None):
 
 def post_delete(request, id=None):
     if not request.user.is_staff or not request.user.is_superuser:
-        raise HTTP404
+        raise Http404("YOU ARE NOT LOGIN. ONLY USERS MAY CREATE/EDIT/DELETE A POST")
+
     instance = get_object_or_404(Post, id=id)
     instance.delete()
     messages.success(request, "Successfully Deleted")
