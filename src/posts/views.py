@@ -14,6 +14,8 @@ from .forms import PostForm
 from .models import Post
 
 def post_create(request):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise HTTP404
 
     # CREATES FORM (DJANGO FORM METHOD) --> request.POST or None FOR VALIDATION ERRORS
     form = PostForm(request.POST or None, request.FILES or None)
@@ -45,6 +47,7 @@ def post_create(request):
 
 
 def post_detail(request, id):   # id PASSED FROM REG EXPRESSION IN post/urls.py
+
 
     # WILL GIVE ERRORS --> NOT RECOMMENDED TO USE
     # instance = Post.objects.get(id=1)
@@ -116,6 +119,9 @@ def post_list(request):
 
 
 def post_update(request, id = None):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise HTTP404
+
     # NEED INSTANCE
     instance = get_object_or_404(Post, id=id)
 
@@ -141,6 +147,8 @@ def post_update(request, id = None):
 
 
 def post_delete(request, id=None):
+    if not request.user.is_staff or not request.user.is_superuser:
+        raise HTTP404
     instance = get_object_or_404(Post, id=id)
     instance.delete()
     messages.success(request, "Successfully Deleted")
